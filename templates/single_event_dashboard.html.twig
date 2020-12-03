@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Dashboard{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/content.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/emo_cards.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/single_event_graphs.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font_awesome/all.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        {{ block("header", "header.html.twig") }}
+        
+        <div id="page">
+        {{block("sidebar","sidebar.html.twig")}}
+        <div id="content">
+                <h2>Statistiche Emotive Generali</h2>
+                <div class="emo_containers">
+                    <div class="canv-container">
+                        <h4 class="h4Attention" > Attenzione</h4>
+                        <img class="eye_img" src="{{ asset('img/eye.png')}}">
+                        <canvas id="attention-piechart" width="350" height="300" style="display: block; height: 300px; width: 350px;" ></canvas>
+                    </div>
+                    <div class="canv-container">
+                        <h4 class="h4Satisfaction" > Autenticazione</h4>
+                        <img src="{{ asset('img/face.png')}}" class="face_img">
+                        <canvas id="presence-piechart" width="350" height="300" style="display: block; height: 300px; width: 350px;" ></canvas>
+                    </div>
+                    <div class="canv-container">
+                        <h4 class="h4Autentication" > Soddisfazione</h4>
+                        <img class="like_img" src="{{ asset('img/like.png')}}">
+                        <canvas id="satisfaction-piechart" width="350" height="300" style="display: block; height: 300px; width: 350px;" ></canvas>
+                    </div>
+                </div><!--end div #emo_containers-->
+                <div id="div_statistiche_interazione_corso" class="general_stats">
+                    <h2> Statistiche di Interazione</h2>
+                </div>
+                
+            
+        </div><!--end div content-->
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('js/beaviour.js') }}"></script>
+            <script src="{{ asset('js/jQuery.js') }}"></script>
+            <script src="{{ asset('js/Chart.js') }}"></script>
+            <script src="{{ asset('js/emostats.js') }}"></script>
+            <script src="{{ asset('js/magheggi.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

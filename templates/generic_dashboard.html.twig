@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Dashboard{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/content.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/emo_cards.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/events-card.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font_awesome/all.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        {{ block("header", "header.html.twig") }}
+        
+        <div id="page">
+        {{block("sidebar","sidebar.html.twig")}}
+        <div id="content">
+                <h2>Statistiche Emotive Generali</h2>
+                <div class="emo_containers">
+                    <div class="canv-container">
+                        <h4 class="h4Attention" > Attenzione</h4>
+                        <img class="eye_img" src="{{ asset('img/eye.png')}}">
+                        <canvas id="attention-piechart" width="350" height="300" style="display: block; height: 300px; width: 350px;" ></canvas>
+                    </div>
+                    <div class="canv-container">
+                        <h4 class="h4Satisfaction" > Autenticazione</h4>
+                        <img src="{{ asset('img/face.png')}}" class="face_img">
+                        <canvas id="presence-piechart" width="350" height="300" style="display: block; height: 300px; width: 350px;" ></canvas>
+                    </div>
+                    <div class="canv-container">
+                        <h4 class="h4Autentication" > Soddisfazione</h4>
+                        <img class="like_img" src="{{ asset('img/like.png')}}">
+                        <canvas id="satisfaction-piechart" width="350" height="300" style="display: block; height: 300px; width: 350px;" ></canvas>
+                    </div>
+                </div><!--end div #emo_containers-->
+                {% block events%}
+                <div class="events_container"><!-- begin events container-->
+                    <h2 class="events_title">Eventi</h2>
+                    
+                    <div class="events">
+                        {% set rank = 1 %}
+                        {% for event in events %}
+                        
+                        <a href="/dashboard/event/{{ event.geteventId}}">
+                        <div class="event">
+                            <div class="rank">{{ rank }}</div>
+                    
+                            <div class="front">
+                            <img class="thumbnail" src="{{ asset('img/game-cover.jpg')}}" alt="" />
+                            <h3 class="name icon">{{ event.getName() }}</h3>
+                            <div class="stats">
+                                <p class="viewers icon">{{ event.getSpectators }}</p>
+                                <div class="streamers" style="display:none">
+                                <img src="{{ asset('img/streamer-1.jpg')}}" alt="" />
+                                <img src="{{ asset('img/streamer-2.jpg')}}" alt="" />
+                                <img src="{{ asset('img/streamer-3.jpg')}}" alt="" />
+                                </div>
+                            </div>
+                            </div>
+                    
+                            <div class="back">
+                            <div class="streaming-info">
+                                <!--<p class="event-stat">559k<span>Watching</span></p>-->
+                                <p class="event-stat">{{ event.date|date("j M")}}<span>{{ event.date|date("yy")}}</span></p>
+                                <br>
+                                <!--<p class="event-stat">25.8k<span>Streams</span></p>-->
+                                <p class="event-stat">{{ event.getSpectators }}<span>Spettatori</span></p>
+                            </div>
+                            <button class="btn">Vedi statistiche</button>
+                            
+                            <div class="streamers" style="display:none">
+                                <div class="streamer">
+                                <div class="icon"><img src="{{ asset('img/streamer-1.jpg')}}" alt="" /></div>
+                                <p class="name">Giorgio Aurispa</p>
+                                <p class="number">Relatore</p>
+                                </div>
+                                <div class="streamer">
+                                <div class="icon"><img src="{{ asset('img/streamer-2.jpg')}}" alt="" /></div>
+                                <p class="name">Vanessa sama</p>
+                                <p class="number">Relatore</p>
+                                </div>
+                                <div class="streamer">
+                                <div class="icon"><img src="{{ asset('img/streamer-3.jpg')}}" alt="" /></div>
+                                <p class="name">Mario brera</p>
+                                <p class="number">Relatore</p>
+                                </div>
+                            </div>
+                                <div class= "streamers event_description" style="">
+                                <p style="">{{event.getDescription}}</p>
+                                </div>
+                            </div>
+                    
+                            <div class="background">
+                            <img src="{{ asset('img/game-cover.jpg')}}" alt="" />
+                            </div>
+                        </div><!--end div event-->
+                        </a>
+                        {% set rank = rank +1 %}
+                        {% endfor %}
+                        
+                        
+                        
+
+                    </div><!--end div #events-->
+                </div><!--end #events_container-->
+                {% endblock %}
+                
+            
+        </div><!--end div content-->
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('js/beaviour.js') }}"></script>
+            <script src="{{ asset('js/jQuery.js') }}"></script>
+            <script src="{{ asset('js/Chart.js') }}"></script>
+            <script src="{{ asset('js/emostats.js') }}"></script>
+            <script src="{{ asset('js/maghecggi.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

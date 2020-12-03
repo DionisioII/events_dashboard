@@ -1,0 +1,39 @@
+{% block header %}
+    <div class="header">
+        <div class="left-head">
+            <div class="logo"><img src="{{asset('img/logo.svg')}}" alt="" class="logoimg"></div>
+            <a href="#" class="hamburger-icon" id="hiding-hamburger"><i class="fa fa-bars"></i></a>
+        </div>
+        <div class="central-head">
+            <!--<div class="searchdiv"><input type="text" class="search_input"></div>-->
+            <div class="search">
+                <input type="text" placeholder="search" />
+                <div class="symbol">
+                    <!--<i class="cloud fas fa-home nav-icon"></i>-->
+                    <i class=" lens fas fa-search nav-icon"></i>
+                </div>
+              </div>
+        </div>
+        <div class="right-head">
+            
+            <div class="notification-div fas fa-bell" id="notificationIcon">
+                <div class="user-notification-div hidden" id="userNotificationDiv">
+                    <ul class="ul-notification-menu">
+                        <li class="li-user-menu"><a href="#"><span>Nessuna notifica</span></a></li>
+                        <hr>
+                        
+                </div>
+            </div>
+            <div class="user-icon-div fas fa-user" id="user-menu-icon">
+                <div class="user-menu-dropdown hidden" id="user-menu">
+                    <ul class="ul-user-menu">
+                        <li class="li-user-menu"><a href="#"><i class="fas fa-cog"></i> <span>Preferences</span></a></li>
+                        <hr>
+                        <li class="li-user-menu"><a href="/logout"><i class="fas fa-sign-in-alt"></i> <span>Log out</span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
